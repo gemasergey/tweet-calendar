@@ -1,0 +1,20 @@
+- if @event.errors.any?
+  %div(class="alert alert-warning" role="alert" )
+    %h2= "#{pluralize(@event.errors.count, "error")} prohibited this item from being saved"
+    %ul
+      - @event.errors.full_messages.each do |msg|
+        %li= msg
+
+= form_for @event do |f|
+  .form-group
+    = f.label "Тема"
+    = f.text_field :title, class: 'form-control'
+  .form-group
+    = f.label "Сообщение"
+    = f.text_area :message, class: 'form-control', rows: 10
+  .form-group
+    = f.label "Дата"
+    = f.text_field :date, {class: 'form-control', data: {provide: 'datepicker', 'date-autoclose': true}}
+
+
+  = f.submit 'Сохранить', class: 'btn btn-info'

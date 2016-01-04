@@ -1,0 +1,7 @@
+%h1.page-header Перечень тегов
+
+.jumbotron
+  - @tags.each do |tag|
+    = link_to tag.name, tag_path(tag), class: "btn-info btn-sm"
+
+%br

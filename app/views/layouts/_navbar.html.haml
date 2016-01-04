@@ -1,0 +1,27 @@
+%nav.navbar.navbar-inverse.navbar-top
+  .container-fluid
+    .navbar-header
+      %button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar")
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to image_tag('calendar.png', width: 25), root_path, class: 'navbar-brand'
+    %navbar.collapse.navbar-collapse(id="navbar")
+      %ul.nav.navbar-nav
+        %li{class: current_page?(events_path) ? 'active':''}
+          = link_to 'Лента', events_path
+        %li{class: current_page?(root_path) ? 'active':''}
+          = link_to 'Календарь', '#'
+        %li{class: current_page?(tags_path) ? 'active':''}
+          = link_to 'Теги', tags_path
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          = link_to 'Выход', session_path, method: :delete
+      = form_tag(events_path, method: "get", class: "navbar-form navbar-right") do
+        = text_field_tag(:tags, nil, {class: "form-control", placeholder: "Search .."})
+
+.container-fluid
+  - flash.each do |type, msg|
+    %div{class: "alert alert-#{type == 'notice' ? "success" : type}", role: "alert"}
+      = msg if msg.is_a?(String)
