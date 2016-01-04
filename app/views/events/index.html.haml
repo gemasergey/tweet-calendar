@@ -1,21 +1,8 @@
 %h1.page-header Последние события
 
-= link_to 'Новое событие', new_event_path, class: "btn btn-info btn-sm"
-
-%br
-
 - @events.each do |event|
+  %h5
+    = link_to "#{event.title} @#{event.date}", event
   .well
-    .panel.panel-default
-      .panel-heading
-        .panel-heading
-          = event.title
-          //
-          = event.date
-      .panel-body
-        = event.message
-    = link_to 'Show', event
-    = link_to 'Edit', edit_event_path(event)
-    = link_to 'Destroy', event, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+    = event.message
 

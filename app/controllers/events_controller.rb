@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = Event.order("created_at desc")
   end
 
   # GET /events/1
@@ -14,7 +14,7 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    @event = Event.new
+    @event = Event.new(date: Date.today.strftime("%d-%m-%Y"))
   end
 
   # GET /events/1/edit
