@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
 
   protected
   def set_tags
-    message_tags = self.message.scan(/\B#\w+/)
+    message_tags = self.message.mb_chars.downcase.scan(/#[[:alnum:]]+/)
     return if message_tags.empty?
     message_tags.each do |message_tag|
       tag = Tag.find_or_create_by(name: message_tag, user_id: user_id)
