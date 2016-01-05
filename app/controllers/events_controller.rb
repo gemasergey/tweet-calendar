@@ -1,10 +1,11 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.order("created_at desc")
+    @events = @current_user.events.order("created_at desc")
   end
 
   # GET /events/1
@@ -14,7 +15,7 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    @event = Event.new(date: Date.today.strftime("%d-%m-%Y"))
+    @event = @current_user.events.new(date: Date.today.strftime("%d-%m-%Y"))
   end
 
   # GET /events/1/edit
@@ -24,7 +25,7 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
+    @event = @current_user.events.new(event_params)
 
     respond_to do |format|
       if @event.save

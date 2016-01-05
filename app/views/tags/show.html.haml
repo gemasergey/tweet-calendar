@@ -1,6 +1,9 @@
-%p#notice= notice
+%h1.page-header Сообщения с тегом #{@tag.name}
+
+- @events.each do |event|
+  %h5
+    = link_to "#{event.title} @#{event.date}", event
+  .well
+    = event.message
 
 
-= link_to 'Edit', edit_tag_path(@tag)
-\|
-= link_to 'Back', tags_path

@@ -4,9 +4,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.where(username: params[:username]).first
+    user = User.where(username: params[:session][:username]).first
 
-    if user && user.authenticate(params[:password])
+    if user && user.authenticate(params[:session][:password])
+      reset_session
       session[:user_id] = user.id
       redirect_to root_url, notice: "Добро пожаловать #{user.firstname}"
     else

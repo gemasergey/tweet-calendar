@@ -1,0 +1,17 @@
+.container-fluid
+  - if flash.now[:alert]
+    %div{class: "alert alert-danger", role: "alert"}
+      = flash.now[:alert]
+
+%br
+.panel.panel-primary
+  .panel-heading
+    %h3.panel-title Введите ваши логин и пароль
+  .panel-body
+    = form_for(:session, url: session_path) do |f|
+      .form-group
+        = f.text_field :username, class: "form-control", :autofocus => "", :placeholder => "Логин"
+      .form-group
+        = f.password_field :password, class: "form-control", :placeholder => "Пароль"
+      .form-group
+        = f.submit "Войти", class: "btn btn-lg btn-primary btn-block"
