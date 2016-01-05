@@ -14,7 +14,7 @@
     = f.text_area :message, class: 'form-control', rows: 10
   .form-group
     = f.label "Дата"
-    = f.text_field :date, {class: 'form-control', data: {provide: 'datepicker', 'date-autoclose': true, 'date-format': 'dd/mm/yyyy', 'date-disable-touch-keyboard': true}}
+    = f.text_field :date, {class: 'form-control', data: {provide: 'datepicker', 'date-autoclose': 'true', 'date-format': 'dd/mm/yyyy', 'date-disable-touch-keyboard': 'true'}}
 
 
   = f.submit 'Сохранить', class: 'btn btn-info'
