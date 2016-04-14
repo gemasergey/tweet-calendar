@@ -7,9 +7,6 @@
 
 = form_for @event do |f|
   .form-group
-    = f.label "Тема"
-    = f.text_field :title, class: 'form-control'
-  .form-group
     = f.label "Сообщение"
     = f.text_area :message, class: 'form-control', rows: 10
   .form-group

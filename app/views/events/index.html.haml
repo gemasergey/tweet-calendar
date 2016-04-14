@@ -1,8 +1,12 @@
 %h1.page-header Последние события
 
-- @events.each do |event|
-  %h5
-    = link_to "#{event.title} @#{event.date}", event
-  .well
-    = event.message
+%ul.list-group
+  - @events.each do |event|
+    %li.list-group-item
+      %small
+        = event.date
+        - event.tags.each do |tag|
+          = link_to tag.name, tag, class: 'btn btn-default btn-xs'
+      %br
+      = event.message
 
